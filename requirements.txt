@@ -9,5 +9,4 @@ matplotlib
 plotly
 bs4
 fastnumbers
-contextlib
 ta
