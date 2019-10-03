@@ -1,0 +1,139 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="../../../../favicon.ico"> -->
+
+    <title>Stock Prices</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/custom.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand mb-0 h1" href="/">
+            <img src="/static/img/stock.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+            Stock App
+          </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <!-- <li class="nav-item active">
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li> -->
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="/">Team</a>
+            </li> -->
+            <!-- <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li> -->
+            <!-- <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li> -->
+          </ul>
+
+          <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-danger my-2 my-sm-0" type="submit">Logout</button>
+          </form>
+        </div>
+    </nav>
+
+    <!-- <div class="container-fluid" style="padding-top: 5rem;">
+        <h2>Select your stock</h2>
+    </div> -->
+
+    <div class="container-fluid" style="padding-top: 4rem; padding-left: 2rem;">
+        <div class="row">
+            <div class="row">
+                <form class="form-inline" action='/' method="POST" enctype="multipart/form-data">
+                    <div class="form-group mx-sm-3 mb-2">
+                            <label for="select_stock" style="margin-right: 5px;">Stock:</label>
+                            <select class="form-control" id="stock_names" name="stock_name">
+                                <option value="BAJFINANCE.NS" {% if stock_sel =="BAJFINANCE.NS" %} selected {% endif %} >Bajaj Finance</option>
+                                <option value="BAJAJFINSV.NS" {% if stock_sel =="BAJAJFINSV.NS" %} selected {% endif %}>Bajaj Finserv</option>
+                                <option value="TCS.NS" {% if stock_sel =="TCS.NS</option>" %} selected {% endif %}>TCS</option>
+                                <option value="HCLTECH.NS" {% if stock_sel =="HCLTECH.NS" %} selected {% endif %}>HCL Tech</option>
+                                <option value="YESBANK.NS" {% if stock_sel =="YESBANK.NS" %} selected {% endif %}>Yes Bank</option>
+                                <option value="GOLDIAM.NS" {% if stock_sel =="GOLDIAM.NS" %} selected {% endif %}>Goldiam</option>
+                            </select>
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                            <label for="select_timerange"  style="margin-right: 5px;">Range: </label>
+                            <select class="form-control" id="select_timerange" name="select_timerange">
+                                <!-- <option value="1" {% if timerange == "1" %} selected {% endif %}>1 months</option> -->
+                                <option value="2" {% if timerange == "2" %} selected {% endif %}>2 months</option>
+                                <option value="3" {% if timerange == "3" %} selected {% endif %}>3 months</option>
+                                <option value="6" {% if timerange == "6" %} selected {% endif %}>6 months</option>
+                                <option value="12" {% if timerange == "12" %} selected {% endif %}>1 year</option>
+                            </select>
+                    </div>
+                    <button type="submit" class="btn btn-warning mx-sm-3 mb-2">Submit</button>
+                </form>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                  {% if stock_detail %}
+                  <!-- <h2 style="margin-top:20px;">Stock Details</h2> -->
+                  <table class="table table-borderless table-sm">
+                      {% for key, value in stock_detail.items() %}
+                      <tr>
+                              <th> {{ key }} </th>
+                              <td> {{ value }} </td>
+                      </tr>
+                      {% endfor %}
+                  </table>
+                  {% endif %}
+              </div>
+              <div class="col-md-8">
+                <div class="chart" id="stockgraph">
+                </div>
+              </div>
+            </div>
+        </div>
+
+    </div>
+<!--
+    <div class="container-fluid">
+        <div class="chart" id="stockgraph">
+    </div> -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/static/js/jquery-slim.min.js"><\/script>')</script>
+    <script src="/static/js/popper.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script>
+        var graphs = {{plot | safe}};
+        if (graphs) {
+            console.log(graphs);
+            Plotly.plot('stockgraph',graphs,{});
+        }
+
+    </script>
+  </body>
+</html>

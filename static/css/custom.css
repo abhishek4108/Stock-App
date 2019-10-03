@@ -1,0 +1,61 @@
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+div#loading {
+  width: 35px;
+  height: 35px;
+  display: none;
+  position: absolute;
+  /* background: url(/static/img/loader.gif) no-repeat; */
+  cursor: wait;
+  }
+
+.table-borderless > tbody > tr > td,
+.table-borderless > tbody > tr > th,
+.table-borderless > tfoot > tr > td,
+.table-borderless > tfoot > tr > th,
+.table-borderless > thead > tr > td,
+.table-borderless > thead > tr > th {
+    border: none;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  /* margin-top: 30px; */
+  border: none;
+}
+
+/* tr {
+  line-height: 1;
+} */
+/* .container {
+  max-width: 960px;
+} */
+
+/* .pricing-header {
+  max-width: 700px;
+}
+
+.card-deck .card {
+  min-width: 220px;
+}
+
+.border-top { border-top: 1px solid #e5e5e5; }
+.border-bottom { border-bottom: 1px solid #e5e5e5; }
+
+.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); } */
+
+/* body {
+  padding-top: 5rem;
+}
+.starter-template {
+  padding: 3rem 1.5rem;
+  text-align: center;
+} */
