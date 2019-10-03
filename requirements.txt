@@ -1,0 +1,13 @@
+datetime
+pandas
+requests
+numpy
+flask
+gunicorn
+pandas_datareader
+matplotlib
+plotly
+bs4
+fastnumbers
+contextlib
+ta
